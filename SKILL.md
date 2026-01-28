@@ -1,7 +1,7 @@
 ---
 name: ui-constitution
 description: Opinionated, enforceable UI ruleset for Cursor agents.
-version: 2.1.0
+version: 2.2.0
 ---
 
 # UI Constitution
@@ -54,12 +54,31 @@ Be strict. Be specific. No vague advice.
 - No animation unless explicitly requested
 
 ### Typography
-- Use Tailwind's type scale (`text-xs` through `text-9xl`) — no arbitrary values like `text-[14px]`
-- `text-balance` on headings
-- `text-pretty` on body text
-- `tabular-nums` on numbers
-- No letter-spacing changes unless requested
-- No font-weight changes outside Tailwind's scale (`font-normal`, `font-medium`, `font-semibold`, `font-bold`)
+Use only Tailwind's built-in typography utilities. No arbitrary values.
+
+**Font Size** (use these, not `text-[14px]`):
+`text-xs` `text-sm` `text-base` `text-lg` `text-xl` `text-2xl` `text-3xl` `text-4xl` `text-5xl` `text-6xl` `text-7xl` `text-8xl` `text-9xl`
+
+**Font Weight** (use these, not `font-[500]`):
+`font-thin` `font-extralight` `font-light` `font-normal` `font-medium` `font-semibold` `font-bold` `font-extrabold` `font-black`
+
+**Line Height**:
+`leading-none` `leading-tight` `leading-snug` `leading-normal` `leading-relaxed` `leading-loose`
+Or numeric: `leading-3` through `leading-10`
+
+**Text Wrap**:
+- `text-balance` — use on headings
+- `text-pretty` — use on body text
+- `text-nowrap` — prevent wrapping
+
+**Numeric**:
+- `tabular-nums` — use on numbers, prices, tables
+
+**Do NOT use**:
+- Arbitrary font sizes: `text-[14px]`, `text-[1.25rem]`
+- Arbitrary font weights: `font-[500]`, `font-[450]`
+- Arbitrary line heights: `leading-[1.2]`, `leading-[22px]`
+- Letter spacing changes: `tracking-tight`, `tracking-wide` (unless explicitly requested)
 
 ### Layout
 - Fixed z-index scale only (no arbitrary z-values)
@@ -91,7 +110,8 @@ Safe to fix automatically:
 - Add `alt=""` to decorative images
 - Add `aria-label` to icon buttons
 - Replace `h-screen` → `h-dvh`
-- Add `text-balance`, `text-pretty`, `tabular-nums`
+- Add `text-balance` to headings, `text-pretty` to body, `tabular-nums` to numbers
+- Replace arbitrary font sizes with nearest Tailwind scale value
 - Replace `div onClick` → `button`
 - Add `type="button"` to non-submit buttons
 
