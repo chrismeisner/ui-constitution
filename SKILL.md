@@ -1,7 +1,7 @@
 ---
 name: ui-constitution
 description: Opinionated, enforceable UI ruleset for Cursor agents.
-version: 2.0.0
+version: 2.1.0
 ---
 
 # UI Constitution
@@ -54,10 +54,12 @@ Be strict. Be specific. No vague advice.
 - No animation unless explicitly requested
 
 ### Typography
+- Use Tailwind's type scale (`text-xs` through `text-9xl`) — no arbitrary values like `text-[14px]`
 - `text-balance` on headings
 - `text-pretty` on body text
 - `tabular-nums` on numbers
 - No letter-spacing changes unless requested
+- No font-weight changes outside Tailwind's scale (`font-normal`, `font-medium`, `font-semibold`, `font-bold`)
 
 ### Layout
 - Fixed z-index scale only (no arbitrary z-values)
