@@ -1,7 +1,7 @@
 ---
 name: ui-constitution
 description: Opinionated, enforceable UI ruleset for Cursor agents.
-version: 3.0.0
+version: 3.1.0
 ---
 
 # UI Constitution
@@ -134,8 +134,17 @@ Use `gap-*` with spacing scale above. Not `gap-[13px]`.
 ### Design
 Use only Tailwind's built-in design utilities. No arbitrary values.
 
-**Border Radius** (use these, not `rounded-[10px]`):
-`rounded-none` `rounded-sm` `rounded` `rounded-md` `rounded-lg` `rounded-xl` `rounded-2xl` `rounded-3xl` `rounded-full`
+**Border Radius**:
+Prefer subtle, small radii. Avoid large, pill-shaped corners.
+
+Allowed:
+`rounded-none` `rounded-sm` `rounded` `rounded-md`
+
+Use sparingly (only for specific UI like avatars, badges, pills):
+`rounded-lg` `rounded-full`
+
+Do NOT use (too rounded):
+`rounded-xl` `rounded-2xl` `rounded-3xl`
 
 **Shadows** (use these, not `shadow-[0_4px_12px_rgba...]`):
 `shadow-sm` `shadow` `shadow-md` `shadow-lg` `shadow-xl` `shadow-2xl` `shadow-none`
@@ -160,6 +169,7 @@ Use only Tailwind's built-in design utilities. No arbitrary values.
 - Arbitrary shadows: `shadow-[0_2px_8px_rgba(0,0,0,0.1)]`
 - Arbitrary radius: `rounded-[10px]`, `rounded-[0.5rem]`
 - Arbitrary opacity: `opacity-[0.85]`
+- Large border radius: `rounded-xl`, `rounded-2xl`, `rounded-3xl` (cards, buttons, containers should use `rounded-md` or smaller)
 
 ### Stack
 - Tailwind CSS defaults
