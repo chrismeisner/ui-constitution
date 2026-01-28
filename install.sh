@@ -7,7 +7,7 @@ set -e
 
 SKILL_NAME="ui-constitution"
 SKILL_DIR="$HOME/.cursor/skills/$SKILL_NAME"
-SKILL_URL="https://raw.githubusercontent.com/chrismeisner/ui-constitution/main/SKILL.md"
+SKILL_URL="https://ui-constitution-a0462cfa89aa.herokuapp.com/SKILL.md"
 
 echo ""
 echo "  ╭─────────────────────────────────────╮"
