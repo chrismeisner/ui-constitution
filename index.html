@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Constitution</title>
+    <meta name="description" content="Opinionated, enforceable ruleset for building high-quality accessible interfaces with AI agents.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --border: #262626;
+            --text: #fafafa;
+            --text-muted: #a1a1a1;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100dvh;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            text-wrap: balance;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            text-wrap: pretty;
+        }
+
+        .install-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .install-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .install-code {
+            position: relative;
+        }
+
+        .install-code code {
+            display: block;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 3rem 1rem 1rem;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.875rem;
+            color: var(--text);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: color 0.15s ease;
+        }
+
+        .copy-btn:hover {
+            color: var(--text);
+        }
+
+        .copy-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .commands {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .command-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .command {
+            display: flex;
+            gap: 1rem;
+            align-items: baseline;
+        }
+
+        .command code {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.875rem;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .command span {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .features {
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .feature-list li {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--border);
+        }
+
+        footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.15s ease;
+        }
+
+        .links a:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .command {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UI Constitution</h1>
+            <p class="tagline">Opinionated, enforceable ruleset for building high-quality accessible interfaces with AI agents.</p>
+        </header>
+
+        <section class="install-section">
+            <p class="install-label">Install for Cursor</p>
+            <div class="install-code">
+                <code id="install-command">curl -fsSL https://ui-constitution.dev/install.sh | sh</code>
+                <button class="copy-btn" onclick="copyInstall()" aria-label="Copy install command">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <section class="commands">
+            <h2>Commands</h2>
+            <div class="command-grid">
+                <div class="command">
+                    <code>/ui build</code>
+                    <span>Generate UI with all constraints applied</span>
+                </div>
+                <div class="command">
+                    <code>/ui review &lt;file&gt;</code>
+                    <span>Audit for violations with fixes</span>
+                </div>
+                <div class="command">
+                    <code>/ui fix &lt;file&gt;</code>
+                    <span>Apply safe automatic fixes</span>
+                </div>
+                <div class="command">
+                    <code>/ui score &lt;file&gt;</code>
+                    <span>Get a quality score breakdown</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>What it enforces</h2>
+            <ul class="feature-list">
+                <li>WCAG 2.1 accessibility requirements</li>
+                <li>Keyboard and screen reader compatibility</li>
+                <li>Performance-safe animations only</li>
+                <li>Accessible component primitives (Radix, React Aria, Base UI)</li>
+                <li>Tailwind best practices</li>
+                <li>Opinionated design taste (no gradients, no glow)</li>
+            </ul>
+        </section>
+
+        <footer>
+            <div class="links">
+                <a href="https://github.com/chrismeisner/ui-constitution">GitHub</a>
+                <a href="./SKILL.md">View Rules</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function copyInstall() {
+            const command = document.getElementById('install-command').textContent;
+            navigator.clipboard.writeText(command);
+            
+            const btn = document.querySelector('.copy-btn');
+            btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
