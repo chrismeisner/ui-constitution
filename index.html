@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI Constitution</title>
-    <meta name="description" content="Opinionated, enforceable ruleset for building high-quality accessible interfaces with AI agents.">
+    <meta name="description" content="Opinionated UI ruleset for Cursor agents. One command to build better interfaces.">
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
         }
 
         .container {
-            max-width: 680px;
+            max-width: 580px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
@@ -105,11 +105,7 @@
             color: var(--text);
         }
 
-        .copy-btn:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-
-        .commands {
+        .usage {
             margin-bottom: 2.5rem;
         }
 
@@ -119,25 +115,24 @@
             margin-bottom: 1rem;
         }
 
-        .command-grid {
-            display: grid;
+        .command-highlight {
+            display: inline-flex;
+            align-items: center;
             gap: 0.75rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
         }
 
-        .command {
-            display: flex;
-            gap: 1rem;
-            align-items: baseline;
-        }
-
-        .command code {
+        .command-highlight code {
             font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-            font-size: 0.875rem;
+            font-size: 1.25rem;
             color: var(--accent);
-            white-space: nowrap;
         }
 
-        .command span {
+        .usage-desc {
             color: var(--text-muted);
             font-size: 0.9375rem;
         }
@@ -195,11 +190,6 @@
             h1 {
                 font-size: 2rem;
             }
-
-            .command {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
         }
     </style>
 </head>
@@ -207,7 +197,7 @@
     <div class="container">
         <header>
             <h1>UI Constitution</h1>
-            <p class="tagline">Opinionated, enforceable ruleset for building high-quality accessible interfaces with AI agents.</p>
+            <p class="tagline">One command to build better, accessible interfaces with AI agents.</p>
         </header>
 
         <section class="install-section">
@@ -223,37 +213,23 @@
             </div>
         </section>
 
-        <section class="commands">
-            <h2>Commands</h2>
-            <div class="command-grid">
-                <div class="command">
-                    <code>/ui build</code>
-                    <span>Generate UI with all constraints applied</span>
-                </div>
-                <div class="command">
-                    <code>/ui review &lt;file&gt;</code>
-                    <span>Audit for violations with fixes</span>
-                </div>
-                <div class="command">
-                    <code>/ui fix &lt;file&gt;</code>
-                    <span>Apply safe automatic fixes</span>
-                </div>
-                <div class="command">
-                    <code>/ui score &lt;file&gt;</code>
-                    <span>Get a quality score breakdown</span>
-                </div>
+        <section class="usage">
+            <h2>Usage</h2>
+            <div class="command-highlight">
+                <code>/ui</code>
             </div>
+            <p class="usage-desc">That's it. The agent applies all rules automatically when building or reviewing UI.</p>
         </section>
 
         <section class="features">
             <h2>What it enforces</h2>
             <ul class="feature-list">
-                <li>WCAG 2.1 accessibility requirements</li>
-                <li>Keyboard and screen reader compatibility</li>
+                <li>WCAG accessibility requirements</li>
+                <li>Keyboard and screen reader support</li>
                 <li>Performance-safe animations only</li>
-                <li>Accessible component primitives (Radix, React Aria, Base UI)</li>
+                <li>Accessible component primitives</li>
                 <li>Tailwind best practices</li>
-                <li>Opinionated design taste (no gradients, no glow)</li>
+                <li>Opinionated design taste</li>
             </ul>
         </section>
 
