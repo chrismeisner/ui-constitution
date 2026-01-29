@@ -1,12 +1,10 @@
 ---
 name: ui-constitution
 description: Opinionated, enforceable UI ruleset for Cursor agents.
-version: 3.1.0
+version: 3.2.0
 ---
 
 # UI Constitution
-
-You are **Rams**, a strict UI systems engineer and accessibility specialist.
 
 When the user invokes `/ui`, apply these rules to everything you build or review.
 
@@ -77,7 +75,18 @@ Use only Tailwind's built-in transition utilities. No animation unless explicitl
 - Custom easing: `ease-[cubic-bezier(0.4,0,0.2,1)]`
 
 ### Typography
-Use only Tailwind's built-in typography utilities. No arbitrary values.
+Use only Tailwind's built-in typography utilities. No arbitrary values. Always use Inter.
+
+**Font Family**:
+- Use `font-sans` only (configured to Inter)
+- Inter must be the only font in the project
+- Configure in Tailwind: `fontFamily: { sans: ['Inter', ...defaultTheme.fontFamily.sans] }`
+
+**Do NOT use**:
+- Custom font imports (`@font-face`, Google Fonts for other typefaces)
+- Other font families: `font-serif`, `font-mono` (unless for actual code blocks)
+- Arbitrary font-family: `font-['Helvetica']`, `font-[system-ui]`
+- Display/decorative fonts
 
 **Font Size** (use these, not `text-[14px]`):
 `text-xs` `text-sm` `text-base` `text-lg` `text-xl` `text-2xl` `text-3xl` `text-4xl` `text-5xl` `text-6xl` `text-7xl` `text-8xl` `text-9xl`
@@ -102,6 +111,9 @@ Or numeric: `leading-3` through `leading-10`
 - Arbitrary font weights: `font-[500]`, `font-[450]`
 - Arbitrary line heights: `leading-[1.2]`, `leading-[22px]`
 - Letter spacing changes: `tracking-tight`, `tracking-wide` (unless explicitly requested)
+- Custom fonts: any font other than Inter
+- Font family utilities: `font-serif`, `font-mono` (except for code blocks)
+- Arbitrary font-family: `font-['Roboto']`, `font-[system-ui]`
 
 ### Layout
 Use only Tailwind's built-in layout utilities. No arbitrary values.
@@ -171,6 +183,61 @@ Do NOT use (too rounded):
 - Arbitrary opacity: `opacity-[0.85]`
 - Large border radius: `rounded-xl`, `rounded-2xl`, `rounded-3xl` (cards, buttons, containers should use `rounded-md` or smaller)
 
+### Dark Mode
+All UI must support both light and dark modes using Tailwind's `dark:` variant.
+
+**Configuration**:
+- Use class-based dark mode: `darkMode: 'class'` in Tailwind config
+- Toggle via `class="dark"` on `<html>` element
+- Respect `prefers-color-scheme` for initial state
+
+**Color Pairing** (light → dark):
+| Light Mode | Dark Mode | Usage |
+|------------|-----------|-------|
+| `bg-white` | `dark:bg-gray-900` | Page background |
+| `bg-gray-50` | `dark:bg-gray-800` | Card/section background |
+| `bg-gray-100` | `dark:bg-gray-700` | Hover states, subtle backgrounds |
+| `text-gray-900` | `dark:text-gray-100` | Primary text |
+| `text-gray-600` | `dark:text-gray-400` | Secondary text |
+| `text-gray-500` | `dark:text-gray-500` | Muted/placeholder text |
+| `border-gray-200` | `dark:border-gray-700` | Borders |
+| `border-gray-300` | `dark:border-gray-600` | Input borders |
+
+**Accent Colors** (same in both modes, adjust shade if needed):
+- Primary actions: Use `500`-`600` shades (work in both modes)
+- Example: `bg-blue-600 dark:bg-blue-500`
+
+**Shadows**:
+- Light: Use standard shadows (`shadow-sm`, `shadow`, `shadow-md`)
+- Dark: Shadows are less visible; rely more on borders or subtle background shifts
+- Example: `shadow-md dark:shadow-none dark:border dark:border-gray-700`
+
+**Rules**:
+- Every color utility MUST have a `dark:` counterpart
+- Never hardcode colors that only work in one mode
+- Test both modes — don't ship light-only or dark-only UI
+- Use semantic color naming in components when possible
+- Maintain WCAG AA contrast in both modes (4.5:1 for text)
+
+**Implementation Pattern**:
+```
+<!-- Correct: paired light/dark -->
+<div class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+<!-- Correct: input with border adjustment -->
+<input class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+
+<!-- Correct: card with shadow/border swap -->
+<div class="bg-white dark:bg-gray-800 shadow-md dark:shadow-none dark:border dark:border-gray-700">
+```
+
+**Do NOT use**:
+- Unpaired colors: `bg-white` without `dark:bg-*`
+- Pure black in dark mode: `dark:bg-black` (too harsh, use `dark:bg-gray-900` or `dark:bg-gray-950`)
+- Pure white text in dark mode: `dark:text-white` (too bright, use `dark:text-gray-100`)
+- Arbitrary dark colors: `dark:bg-[#1a1a1a]`
+- Inverted opacity for dark mode: don't use `dark:opacity-80` to "fix" contrast
+
 ### Stack
 - Tailwind CSS defaults
 - `cn()` utility (clsx + tailwind-merge)
@@ -190,6 +257,11 @@ Safe to fix automatically:
 - Replace `div onClick` → `button`
 - Add `type="button"` to non-submit buttons
 - Replace `w-*` + `h-*` with `size-*` for squares
+- Replace `font-serif`/`font-mono` → `font-sans` (except in code blocks)
+- Remove arbitrary font-family values → use `font-sans`
+- Add missing `dark:` variants using standard color pairings
+- Replace `dark:bg-black` → `dark:bg-gray-900`
+- Replace `dark:text-white` → `dark:text-gray-100`
 
 Never auto-fix:
 - Semantic structure
