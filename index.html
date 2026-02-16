@@ -1,265 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI Constitution</title>
     <meta name="description" content="Opinionated UI ruleset for Cursor agents. One command to build better interfaces.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
         }
-
-        :root {
-            --bg: #0a0a0a;
-            --surface: #141414;
-            --border: #262626;
-            --text: #fafafa;
-            --text-muted: #a1a1a1;
-            --accent: #3b82f6;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100dvh;
-        }
-
-        .container {
-            max-width: 580px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        header {
-            margin-bottom: 3rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.75rem;
-            text-wrap: balance;
-        }
-
-        .tagline {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            text-wrap: pretty;
-        }
-
-        .install-section {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .install-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .install-code {
-            position: relative;
-        }
-
-        .install-code code {
-            display: block;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem 3rem 1rem 1rem;
-            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-            font-size: 0.875rem;
-            color: var(--text);
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .copy-btn {
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: color 0.15s ease;
-        }
-
-        .copy-btn:hover {
-            color: var(--text);
-        }
-
-        .usage {
-            margin-bottom: 2.5rem;
-        }
-
-        h2 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .command-highlight {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .command-highlight code {
-            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-            font-size: 1.25rem;
-            color: var(--accent);
-        }
-
-        .usage-desc {
-            color: var(--text-muted);
-            font-size: 0.9375rem;
-        }
-
-        .update-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .features {
-            margin-bottom: 2.5rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: grid;
-            gap: 0.5rem;
-        }
-
-        .feature-list li {
-            color: var(--text-muted);
-            font-size: 0.9375rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .feature-list li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--border);
-        }
-
-        footer {
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.15s ease;
-        }
-
-        .links a:hover {
-            color: var(--text);
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 2.5rem 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>UI Constitution</h1>
-            <p class="tagline">One command to build better, accessible interfaces with AI agents.</p>
+<body class="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 font-sans min-h-dvh">
+    
+    <main class="max-w-xl mx-auto px-4 py-16 flex flex-col gap-8">
+        
+        <!-- Header -->
+        <header class="flex flex-col gap-3">
+            <h1 class="text-4xl font-semibold leading-tight text-balance text-neutral-900 dark:text-neutral-100">
+                UI Constitution
+            </h1>
+            <p class="text-lg font-normal leading-relaxed text-pretty text-neutral-600 dark:text-neutral-400">
+                One command to build better, accessible interfaces with AI agents.
+            </p>
         </header>
 
-        <section class="install-section">
-            <p class="install-label">Install for Cursor</p>
-            <div class="install-code">
-                <code id="install-command">curl -fsSL https://ui-constitution-a0462cfa89aa.herokuapp.com/install.sh | sh</code>
-                <button class="copy-btn" onclick="copyInstall()" aria-label="Copy install command">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Install Section -->
+        <section class="bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md p-6 flex flex-col gap-3">
+            <span class="text-xs font-medium uppercase tracking-wide leading-none text-neutral-500 dark:text-neutral-500">
+                Install for Cursor
+            </span>
+            <div class="relative">
+                <code id="install-command" class="block text-sm font-mono leading-normal text-neutral-900 dark:text-neutral-100 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-md p-4 pr-12 overflow-x-auto whitespace-nowrap">curl -fsSL https://ui-constitution-a0462cfa89aa.herokuapp.com/install.sh | sh</code>
+                <button 
+                    type="button" 
+                    class="absolute right-2 top-1/2 -translate-y-1/2 size-8 flex items-center justify-center rounded text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-150" 
+                    onclick="copyInstall()" 
+                    aria-label="Copy install command"
+                >
+                    <svg id="copy-icon" class="size-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <svg id="check-icon" class="size-5 hidden" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                 </button>
             </div>
         </section>
 
-        <section class="usage">
-            <h2>Usage</h2>
-            <div class="command-highlight">
-                <code>/ui</code>
+        <!-- Usage Section -->
+        <section class="flex flex-col gap-3">
+            <h2 class="text-lg font-medium leading-snug text-neutral-900 dark:text-neutral-100">Usage</h2>
+            <div class="inline-flex self-start items-center bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md px-4 py-3">
+                <code class="text-xl font-mono leading-none text-blue-600 dark:text-blue-400">/ui</code>
             </div>
-            <p class="usage-desc">That's it. The agent applies all rules automatically when building or reviewing UI.</p>
+            <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">
+                That's it. The agent applies all rules automatically when building or reviewing UI.
+            </p>
         </section>
 
-        <section class="update-section">
-            <h2>Update</h2>
-            <p class="usage-desc">Run the same install command again to get the latest version. It detects existing installs and updates in place.</p>
+        <!-- Update Section -->
+        <section class="flex flex-col gap-3">
+            <h2 class="text-lg font-medium leading-snug text-neutral-900 dark:text-neutral-100">Update</h2>
+            <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">
+                Run the same install command again to get the latest version. It detects existing installs and updates in place.
+            </p>
         </section>
 
-        <section class="features">
-            <h2>What it enforces</h2>
-            <ul class="feature-list">
-                <li>WCAG accessibility requirements</li>
-                <li>Keyboard and screen reader support</li>
-                <li>Performance-safe animations only</li>
-                <li>Accessible component primitives</li>
-                <li>Tailwind best practices</li>
-                <li>Opinionated design taste</li>
+        <!-- Features Section -->
+        <section class="flex flex-col gap-3">
+            <h2 class="text-lg font-medium leading-snug text-neutral-900 dark:text-neutral-100">What it enforces</h2>
+            <ul class="flex flex-col gap-2">
+                <li class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                    <span class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">→</span>
+                    WCAG accessibility requirements
+                </li>
+                <li class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                    <span class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">→</span>
+                    Keyboard and screen reader support
+                </li>
+                <li class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                    <span class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">→</span>
+                    Performance-safe animations only
+                </li>
+                <li class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                    <span class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">→</span>
+                    Accessible component primitives
+                </li>
+                <li class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                    <span class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">→</span>
+                    Tailwind best practices
+                </li>
+                <li class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
+                    <span class="text-neutral-300 dark:text-neutral-600" aria-hidden="true">→</span>
+                    Opinionated design taste
+                </li>
             </ul>
         </section>
 
-        <footer>
-            <div class="links">
-                <a href="https://github.com/chrismeisner/ui-constitution">GitHub</a>
-                <a href="./SKILL.md">View Rules</a>
+        <!-- Changelog -->
+        <section id="changelog" class="flex flex-col gap-4">
+            <h2 class="text-lg font-medium leading-snug text-neutral-900 dark:text-neutral-100">Changelog</h2>
+            <div class="flex flex-col gap-px">
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">4.0.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Core systems &amp; opt-in focus rings</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Added semantic spacing, elevation, color role, container, component size, and icon size scales. High-visibility focus outlines are now opt-in instead of required by default. Greyscale palette standardized to neutral-only.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">3.2.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Inter font &amp; dark mode</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Inter is now the only allowed font. Full dark mode rules with required light/dark color pairing for every surface, text, and border utility.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">3.1.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Border radius constraint</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Restricted border radius to subtle values. Banned rounded-xl, rounded-2xl, and rounded-3xl for cards, buttons, and containers.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">3.0.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Explicit Tailwind utilities</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Defined allowed values for layout, animation, and design. Banned arbitrary values for z-index, sizing, spacing, shadows, opacity, and colors.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">2.2.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Typography utilities</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Explicit allowed font sizes, weights, and line heights. Banned arbitrary typography values.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">2.1.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Typography scale</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Added core type scale with defined roles from Display to Code. Every text element must map to a role.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">2.0.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Simplified command &amp; versioning</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Consolidated to a single /ui command. Added update detection so re-running the installer upgrades in place.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 py-3">
+                    <span class="text-xs font-mono leading-normal text-neutral-500 dark:text-neutral-500 w-14 shrink-0 tabular-nums pt-0.5">1.0.0</span>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-sm font-medium leading-normal text-neutral-900 dark:text-neutral-100">Initial release</p>
+                        <p class="text-sm font-normal leading-normal text-neutral-600 dark:text-neutral-400">Core accessibility, component, interaction, and performance rules with install script and landing page.</p>
+                    </div>
+                </div>
+
             </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="pt-8 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-between">
+            <nav class="flex items-center gap-6">
+                <a href="https://github.com/chrismeisner/ui-constitution" class="text-sm font-normal leading-normal text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-150">
+                    GitHub
+                </a>
+                <a href="./SKILL.md" class="text-sm font-normal leading-normal text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-150">
+                    View Rules
+                </a>
+                <a href="#changelog" class="text-sm font-normal leading-normal text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-150">
+                    Changelog
+                </a>
+                <a href="./sample.html" class="text-sm font-normal leading-normal text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-150">
+                    Sample
+                </a>
+            </nav>
+            <button 
+                type="button" 
+                onclick="toggleDarkMode()" 
+                class="size-8 flex items-center justify-center rounded text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-150"
+                aria-label="Toggle dark mode"
+            >
+                <svg class="size-5 dark:hidden" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+                <svg class="size-5 hidden dark:block" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+            </button>
         </footer>
-    </div>
+
+    </main>
 
     <script>
+        // Check for saved preference or system preference
+        if (localStorage.theme === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+
         function copyInstall() {
             const command = document.getElementById('install-command').textContent;
             navigator.clipboard.writeText(command);
             
-            const btn = document.querySelector('.copy-btn');
-            btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+            const copyIcon = document.getElementById('copy-icon');
+            const checkIcon = document.getElementById('check-icon');
+            
+            copyIcon.classList.add('hidden');
+            checkIcon.classList.remove('hidden');
             
             setTimeout(() => {
-                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+                copyIcon.classList.remove('hidden');
+                checkIcon.classList.add('hidden');
             }, 2000);
         }
     </script>
